@@ -16,6 +16,8 @@ body {
   justify-content: center;
   align-items: center;
   align-content: center;
+
+  font-size: 2vw;
 }
 
 #content {
@@ -29,18 +31,34 @@ body {
   align-items: center;
   align-content: center;
 
-  background-color: aqua;
+  background-color: black;
 }
 
 .slide {
   width: 80%;
   height: 80%;
+  color: gray;
 
   display: none;
-
-  background-color: gray;
 }
 
 .slide.active {
   display: block;
+}
+
+.slide > .head {
+  text-align: center;
+}
+
+.slide > .body {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+.slide > .body > p {
+  white-space: nowrap;
 }

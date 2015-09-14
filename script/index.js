@@ -118,19 +118,24 @@
   };
 
   SlideController.prototype.next = function () {
-    console.info('next');
     this.goTo(this._currentID + 1);
     return this;
   };
 
   SlideController.prototype.previous = function () {
-    console.info('previous');
     this.goTo(this._currentID - 1);
     return this;
   };
 
+  SlideController.prototype.begin = function () {
+    this.goTo(1);
+  };
+
+  SlideController.prototype.end = function () {
+    this.goTo(this._nSlides - 1);
+  };
+
   SlideController.prototype.goTo = function (id) {
-    console.info('goTo', id);
     if (id >= this._nSlides || id <= 0) {
       return;
     }
