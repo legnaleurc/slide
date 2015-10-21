@@ -95,6 +95,12 @@ btn.addEventListener('click', function (event) {
 
 沒開 Console 就不會停
 
+```javascript
+var i = 0;
+debugger; // 會停在這裡
+i = i + 1;
+```
+
 # console API
 
 * 印除錯訊息
@@ -118,6 +124,8 @@ btn.addEventListener('click', function (event) {
 * Data Management
 * Other
 
+See Also: [MDN](https://developer.mozilla.org/en-US/docs/WebAPI)
+
 # Communication API
 
 TCPSocket
@@ -140,7 +148,7 @@ var socket = navigator.mozTCPSocket.listen(8080);
 
 ```javascript
 // receive
-socket.ondata = function onDataReceived () {
+socket.ondata = function onDataReceived (event) {
   if (typeof event.data === 'string') {
     console.info('Get a string: ' + event.data);
   } else {
@@ -178,11 +186,10 @@ pushData();
 ```javascript
 window.addEventListener("deviceorientation", function (event) {
   var absolute = event.absolute;
-  var yaw    = event.alpha;
+  var yaw      = event.alpha;
   var roll     = event.beta;
   var pitch    = event.gamma;
-  console.info();
-}, true);
+});
 ```
 
 # Data Management API
@@ -191,6 +198,80 @@ window.addEventListener("deviceorientation", function (event) {
 * IndexedDB API
 * Contacts API
 * Device Storage API
+
+# IndexedDB API
+
+* IndexedDB databases store key-value pairs
+* IndexedDB is built on a transactional database model
+* The IndexedDB API is mostly asynchronous
+
+# IndexedDB API
+
+```javascript
+// the number is your schema version, so you can do migration if needed
+var dbRequest = indexedDB.open('your_database_name', 1);
+
+dbRequest.onupgradeneeded = function (event) {
+  // first time or version upgraded
+};
+
+dbRequest.onsuccess = function (event) {
+  // do actions after success
+};
+
+dbRequest.onerror = function (event) {
+  // handle error
+};
+```
+
+# IndexedDB API
+
+```javascript
+dbRequest.onupgradeneeded = function (event) {
+  var theDB = event.target.result;
+
+  // Object Stores is like "tables" in RDB
+  if (theDB.objectStoreNames.contains('my_table')) {
+    theDB.createObjectStore('my_table', {
+      keyPath: 'name',
+    });
+  }
+};
+```
+
+# IndexedDB API
+
+```javascript
+var transaction = db.transaction(['my_table'], 'readwrite');
+var table = transaction.objectStore('my_table');
+
+var request = table.add({
+  name: 'John',
+});
+
+request.onerror = function (event) {
+  console.warn(event.target.error.name);
+}
+
+request.onsuccess = function (event) {
+  // ok
+}
+```
+
+# IndexedDB API
+
+```javascript
+var request = table.get('John');
+
+request.onerror = function (event) {
+  console.warn(event.target.error.name);
+}
+
+request.onsuccess = function (event) {
+  var result = event.target.result;
+  console.info(result);
+}
+```
 
 # Other API
 
@@ -201,5 +282,21 @@ window.addEventListener("deviceorientation", function (event) {
 * Web Activities
 * WebPayment API
 * Browser API
+
+# Web Notifications
+
+```javascript
+Notification.requestPermission(function (permission) {
+  // check permission
+});
+
+var n = new Notification('Your Title', {
+  body: 'Message Body',
+  icon: 'img/your_image_path.png',
+});
+setTimeout(function () {
+  n.close();
+}, 5000);
+```
 
 # Q&A
