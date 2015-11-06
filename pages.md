@@ -1,6 +1,6 @@
-# WebAPI Basics
+# AdsBypasser (??)
 
-and something useful
+fight against annoying ads
 
 # Who am I
 
@@ -14,41 +14,23 @@ enjoying making tools to solve my own problems
 
 [more ...](https://about.me/legnaleurc)
 
-# HTML
+# What is This?
 
-HyperText Markup Language
+it's an user script
 
-描述網頁的結構
+* remove popup/overlay on images
+* skip countdown page
 
-```html
-<div id="example-id">
-  <p class="example-class">
-    <button>Text</button>
-  </p>
-</div>
-```
+# Trick 1
 
-# CSS
+just find the element by selector
 
-Cascading Style Sheet
+# Trick 2
 
-描述網頁的外觀
+hijack the script
 
-```css
-#example-id .example-class > button {
-  font-size: 16px;
-  height: 300px;
-  color: red;
-}
-```
-
-# DOM
-
-Document Object Model
-
-連接 JavaScript 與頁面內容的橋樑
-
-用 JavaScript 操作網頁就靠它了
+* find the real link in the script
+* find the function that reveals the real link
 
 # Global Object
 
