@@ -1,42 +1,36 @@
-# WebAPI Basics
+# AdsBypasser (??)
 
-How do you turn this on?
+fight against annoying ads
 
-# HTML
+# Who am I
 
-HyperText Markup Language
+worked in SkyWatch (video streaming, IoT)
 
-描述網頁的結構
+working in Mozilla's performance team
 
-```html
-<div id="example-id">
-  <p class="example-class">
-    <button>Text</button>
-  </p>
-</div>
-```
+open source contributor (FFmpeg, Tornado, HIME ... etc.)
 
-# CSS
+enjoying making tools to solve my own problems
 
-Cascading Style Sheet
+[more ...](https://about.me/legnaleurc)
 
-描述網頁的外觀
+# What is This?
 
-```css
-#example-id .example-class > button {
-  font-size: 16px;
-  height: 300px;
-  color: red;
-}
-```
+it's an user script
 
-# DOM
+* remove popup/overlay on images
+* skip countdown page
 
-Document Object Model
+# Trick 1
 
-連接 JavaScript 與頁面內容的橋樑
+just find the element by selector
 
-用 JavaScript 操作網頁就靠它了
+# Trick 2
+
+hijack the script
+
+* find the real link in the script
+* find the function that reveals the real link
 
 # Global Object
 
@@ -55,7 +49,7 @@ navigator;
 location;
 // 歷史記錄
 history;
-// 存取網頁介面
+// 存取網頁內容
 document;
 ```
 
@@ -107,6 +101,31 @@ i = i + 1;
 * 計時
 
 沒看 Console 就看不到
+
+# WebAPP 結構
+
+manifest.webapp
+
+```javascript
+{
+  "name": "hello_world",
+  "description": "A Hello World app",
+  "launch_path": "/index.html",
+  "icons": {
+    "128": "/icons/icon128x128.png"
+  },
+  "developer": {
+    "name": "Your name",
+    "url": "http://example.com"
+  },
+  "type": "privileged",
+  "permissions": {
+    "systemXHR": {
+      "description": "Required to load remote content"
+    }
+  }
+}
+```
 
 # WebAPI 權限
 
@@ -300,3 +319,19 @@ setTimeout(function () {
 ```
 
 # Q&A
+
+# Assignment
+
+寫一個時鐘 app:
+
+1. 顯示現在時間(年月日時分秒) (30%)
+  1. 星期 (+5%)
+  2. 時區 (+5%)
+2. 碼表計時(啟動, 暫停, 歸零) (30%)
+3. 設定鬧鈴, 可在指定時間響鈴 (40%)
+
+# Turn In
+
+在 Github 開 pull request
+
+標題請包含學號
