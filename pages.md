@@ -5,12 +5,14 @@ Wei-Cheng Pan
 
 # What?
 
-* Recording All Events
+* Record Necessary Events
 * Replay Them Afterward
 
 # Why?
 
-Save the Track for each Test Case
+Sometimes We Can't Always Get the Same Result in a Test Case
+
+Save the Track after Execution, and Reproduce It Again
 
 # How?
 
