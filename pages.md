@@ -34,20 +34,21 @@ Save the Track for each Test Case
 
 # in C++
 
-* Intercept Events in **EventDispatcher::Dispatch**
-* Serialize Events and EventTargets
-* Deserialize Events and EventTargets
-* Create Events by **Event::Create**
+* Intercept Events in **mozilla::EventDispatcher::Dispatch**
+* Serialize Events
+* Deserialize Events
+* Create Events by **mozilla::EventDispatcher::CreateEvent**
 
-# Serialization
+# Pointer Serialization
 
 * **EventTarget** and **nsPresContext**
-* Log an Increamental ID in the constructor
+* Log an Incremental ID in the Constructor
 * Convert the Pointer to ID while Saving
 * Convert the ID back to Pointer while Loading
 
-# (cont.)
+# Event Serialization
 
+* There is Another **Serialize**/**Deserialize** in the Interface
 * Add Another Serialization Interface to nsIEvent
 
 # Demo
