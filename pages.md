@@ -1,56 +1,82 @@
-# Stability Testing in Gecko
+# Event Recorder in Gecko
 
 Wei-Cheng Pan
-(2015/11/25)
 
-# What?
+performance team in Mozilla Taiwan
 
-* Record Necessary Events
-* Replay Them Afterward
+2015/12/10
 
 # Why?
 
-Sometimes We Can't Always Get the Same Result in a Test Case
+<!-- when we doing monkey or fuzz testing -->
+monkey/fuzz testing
 
-Save the Track after Execution, and Reproduce It Again
+# Why?
 
-# How?
+<!-- repeat many times to reproduce again -->
+<!-- require a precise gesture/timeing -->
+* bugs randomly happen
+<!-- it does not works on my machine -->
+<!-- a stack dump is not enough -->
+* hard to report or share
 
-(in JavaScript)
+# What?
+
+<!-- most of time you do not know where is the problem -->
+* save the track after execution
+<!-- easy to test, easy to cooperate -->
+* reproduce it again
+
+# How? (in JavaScript)
 
 1. mock **EventTarget.prototype.addEventListener**
 2. serialize captured events
-3. deserialize events
-4. use **EventTarget.prototype.dispatchEvent**
+
+[example](https://github.com/legnaleurc/calc/blob/master/js/event.js#L79)
+
+# How? (in JavaScript)
+
+1. deserialize events
+2. use **EventTarget.prototype.dispatchEvent**
 
 [example](https://github.com/legnaleurc/calc/blob/master/js/event.js#L79)
 
 # Problems
 
-* Targets in an Event
-    * target
-    * currentTarget
-    * relatedTarget
-* Recover Target
-    * CSS Selector does not always work
+<!-- when you get them wrong, the listener won't trigger -->
+targets in an `Event`
+
+* `target`
+* `currentTarget`
+* `relatedTarget`
+
+# Problems
+
+<!-- to do this, I convert the Element back to an unique selector -->
+how to serialize all targets?
+
+CSS selector does not always work
 
 # in C++
 
-* Intercept Events in **mozilla::EventDispatcher::Dispatch**
-* Serialize Events
-* Deserialize Events
-* Create Events by **mozilla::EventDispatcher::CreateEvent**
+1. intercept in `mozilla::EventDispatcher::Dispatch`
+2. serialize by `nsIEvent::SerializeEvent`
+
+# in C++
+
+1. deserialize by `mozilla::EventDispatcher::CreateEvent`
+2. dispatch by `mozilla::EventDispatcher::Dispatch`
 
 # Pointer Serialization
 
-* **EventTarget** and **nsPresContext**
-* Log an Incremental ID in the Constructor
-* Convert the Pointer to ID while Saving
-* Convert the ID back to Pointer while Loading
+* `EventTarget` and `nsPresContext`
+* register an incremental ID in the constructor
+* convert the pointer to ID while saving
+* convert the ID back to pointer while loading
 
 # Event Serialization
 
-* There is Another **Serialize**/**Deserialize** in the Interface
-* Add Another Serialization Interface to nsIEvent
+* there are `Serialize`/`Deserialize` in the interface
+* add another serialization interface to `nsIEvent`
 
 # Demo
